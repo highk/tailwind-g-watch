@@ -25,13 +25,13 @@ npm uninstall -g
 
 ### Command
 
-- target `./{YOUR_PROJECT}`
+- target `.`
 
   ```bash
   tailwind-g-wtach
   ```
 
-- target `./{YOUR_PROJECT}/views`
+- target `./views`
 
   ```bash
   tailwind-g-wtach --dir views
