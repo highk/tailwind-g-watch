@@ -10,11 +10,14 @@
   "bin": {
     "tailwind-g-watch": "./bin/cli.js"
   },
-  "keywords": ["tailwindcss"],
+  "keywords": [
+    "tailwindcss"
+  ],
   "author": "superfast",
   "license": "MIT",
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/container-queries": "^0.1.0",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.8",

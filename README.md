@@ -4,6 +4,8 @@
 
 This command will 'watch' and 'build' multiple `TailwindCSS' within your project individually.
 
+Support [TailwindCSS](https://tailwindcss.com/) 3.2+
+
 ## Installation
 
 Install this source outside your project.
@@ -162,6 +164,7 @@ module.exports = {
       require("@tailwindcss/forms"),
       require("@tailwindcss/line-clamp"),
       require("@tailwindcss/aspect-ratio"),
+      require("@tailwindcss/container-queries"),
     ],
   };
   ```
@@ -174,7 +177,7 @@ module.exports = {
   ```css
   @config "../config/config.js";
   @tailwind utilities;
-  
+
   /* Add your custom css */
   ```
 
