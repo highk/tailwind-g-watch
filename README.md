@@ -43,7 +43,7 @@ npm uninstall -g
   tailwind-g-wtach --minify
   ```
 
-### Your Project File Tree Example
+### File Tree Example
 
 ```plain
 .
@@ -110,8 +110,69 @@ module.exports = {
 };
 ```
 
-Do not define `plugins` in your project `tailwind.config.js`.
-
 #### Supported View File Extensions
 
 - `jsx`, `tsx`, `vue`, `blade.php`, `pug`, `html`
+
+### Local TailwindCSS Config file
+
+#### Config File Tree Example
+
+```plain
+.
+├── assets/
+│   └── css/
+│       ├── config.css
+│       └── index.dist.css
+├── index.html
+├── views/
+│   ├── apple/
+│   │   ├── assets/
+│   │   │   └── config/
+│   │   │       ├── config.js <-- "apple/" tailwind config
+│   │   │   └── css/
+│   │   │       ├── config.css
+│   │   │       └── index.dist.css
+│   │   └── apple.html
+└── tailwind.config.js <-- project tailwind.config.js
+```
+
+#### Config File Examples
+
+- `./views/apple/assets/config/config.js`
+
+  ```javascript
+  module.exports = {
+    content: ["views/apple/*.html"]
+    plugins: [
+      require("@tailwindcss/typography"),
+      require("@tailwindcss/forms"),
+      require("@tailwindcss/line-clamp"),
+      require("@tailwindcss/aspect-ratio"),
+    ],
+  };
+  ```
+
+- `./views/apple/assets/css/config.css`
+
+  ```css
+  @config "../config/config.js";
+  @tailwind utilities;
+  ```
+
+### Use TailwindCSS custom config and other node modules
+
+Example, If you define `plugins` in your project `tailwind.config.js` or `config.js`
+
+```bash
+cd ${YOUR_PROJECT_ROOT}
+```
+
+```bash
+npm init -y
+npm i -D tailwindcss
+```
+
+```bach
+npm i -D @tailwindcss/typography @tailwindcss/forms @tailwindcss/line-clamp @tailwindcss/aspect-ratio [and others...]
+```
