@@ -24,6 +24,10 @@ npm uninstall -g
 
 ## Use
 
+```bash
+cd ${YOUR_PROJECT_ROOT}
+```
+
 ### Command
 
 - target `.`
