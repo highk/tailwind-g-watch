@@ -76,6 +76,7 @@ cd ${YOUR_PROJECT_ROOT}
 #### File Examples
 
 - `./tailwind.config.js`
+  TailwindCSS Configuration Guide: [https://tailwindcss.com/docs/configuration]
 
   ```javascript
   module.exports = {
@@ -92,6 +93,10 @@ cd ${YOUR_PROJECT_ROOT}
     },
   };
   ```
+
+  - `plugins` is defined in [Defualt TailwindCSS Plugins](#defualt-tailwindcss-plugins) and run the merge configuration.
+
+  - If you define `plugins` your `tailwind.config.js`, See [Use TailwindCSS custom config and other node modules](#use-tailwindcss-custom-config-and-other-node-modules)
 
 - `./assets/css/config.css`
 
@@ -157,6 +162,9 @@ module.exports = {
     ],
   };
   ```
+
+  - In this case [Defualt TailwindCSS Plugins](#defualt-tailwindcss-plugins) not working.
+  - Thus you need define `plugins` in your `config.js`. See [Use TailwindCSS custom config and other node modules](#use-tailwindcss-custom-config-and-other-node-modules)
 
 - `./views/apple/assets/css/config.css`
 
