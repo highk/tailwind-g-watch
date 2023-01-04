@@ -167,7 +167,7 @@ module.exports = {
 
 ### Use TailwindCSS custom config and other node modules
 
-Example, If you define `plugins` in your project `tailwind.config.js` or `config.js`
+E.g, If you define `plugins` in your project `tailwind.config.js` or `config.js`
 
 ```bash
 cd ${YOUR_PROJECT_ROOT}
