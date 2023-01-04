@@ -101,10 +101,13 @@ cd ${YOUR_PROJECT_ROOT}
 - `./assets/css/config.css`
 
   ```css
+  /* @tailwind base; */
+  /* @tailwind components; */
+
+  /* Read your `view file` and generate TailwindCSS */
   @tailwind utilities;
 
-  .your-custom-css {
-  }
+  /* Add your custom css */
   ```
 
 #### Defualt TailwindCSS Plugins
@@ -171,6 +174,8 @@ module.exports = {
   ```css
   @config "../config/config.js";
   @tailwind utilities;
+  
+  /* Add your custom css */
   ```
 
 ### Use TailwindCSS custom config and other node modules
