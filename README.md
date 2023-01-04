@@ -18,6 +18,7 @@ npm i -g
 ### Uninstall command
 
 ```bash
+cd tailwind-g-watch
 npm uninstall -g
 ```
 
