@@ -39,13 +39,13 @@ cd ${YOUR_PROJECT_ROOT}
 - target `./views`
 
   ```bash
-  tailwind-g-wtach --dir views
+  tailwind-g-wtach --dir views # -d views
   ```
 
 - minified output css
 
   ```bash
-  tailwind-g-wtach --minify
+  tailwind-g-wtach --minify # -m
   ```
 
 ### File Tree Example
