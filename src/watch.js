@@ -61,6 +61,13 @@ module.exports = function wailwindWtach(tailwindConfig) {
   });
 
   watcher.on("change", (filepath) => {
+    if (basename(filepath) === "config.js") {
+      if (fs.existsSync(`${dirname(dirname(filepath))}/css/config.css`)) {
+        run(`${dirname(dirname(filepath))}/css/config.css`, tailwindConfig, isLog);
+      }
+      return;
+    }
+
     if (basename(filepath) === "config.css") {
       if (basename(dirname(filepath)) === "css") {
         run(filepath, tailwindConfig, isLog);
