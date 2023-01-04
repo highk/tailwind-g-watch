@@ -1,4 +1,4 @@
-# tainwind-g-watch
+# tailwind-g-watch
 
 ## Introduce
 
