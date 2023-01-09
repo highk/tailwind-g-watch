@@ -28,7 +28,16 @@ npm i
 npm i -g
 ```
 
-### Uninstall command
+### Update Command
+
+```bash
+cd tailwind-g-watch
+git pull origin master
+npm i
+npm i -g
+```
+
+### Uninstall Command
 
 ```bash
 cd tailwind-g-watch
