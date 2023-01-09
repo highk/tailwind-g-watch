@@ -1,32 +1,15 @@
-const { dirname } = require("path");
 const postcss = require("postcss");
 const tailwindcss = require("tailwindcss");
-const postcssImportPlugin = require("postcss-import");
-const postcssNestingPlugin = require("tailwindcss/nesting/index.js");
-const autoprefixer = require("autoprefixer");
-const cssnano = require("cssnano");
-const postcssPresetEnvPlugin = require("postcss-preset-env");
-const postcssDiscardCommentsPlugin = require("postcss-discard-comments");
-const { readFile, writeFile } = require("./utils.js");
+const { dirname } = require("path");
+const { mkdir, writeFile, readFile } = require("fs/promises");
+const productionPostcssPlugins = require("./postcss.plugins.production");
+const defaultPostcssPlugins = require("./postcss.plugins");
 const tailwindPlugins = require("./taliwind.plugins");
-
-const productionPostcssPlugins = [
-  postcssDiscardCommentsPlugin({
-    removeAll: true,
-  }),
-  cssnano({
-    preset: "cssnano-preset-advanced",
-  }),
-  postcssPresetEnvPlugin({
-    browsers: ["ie 10", "> 2%", "last 2 versions"],
-    features: { "nesting-rules": false },
-  }),
-  autoprefixer,
-];
+const postcssScssSyntax = require('postcss-scss')
 
 async function run(configPath, tailwindConfig) {
   const isProdction = process.env.NODE_ENV === "production";
-  const tailwindPlugin = tailwindcss({
+  const tailwindPostcssPlugin = tailwindcss({
     content: [
       `${dirname(dirname(dirname(configPath)))}/*.{html,blade.php,jsx,tsx,pug}`,
     ],
@@ -35,11 +18,7 @@ async function run(configPath, tailwindConfig) {
   });
 
   const postcssContent = await readFile(configPath);
-  const postcssPlugins = [
-    postcssImportPlugin,
-    postcssNestingPlugin,
-    tailwindPlugin,
-  ];
+  const postcssPlugins = [...defaultPostcssPlugins, tailwindPostcssPlugin];
 
   if (isProdction) {
     postcssPlugins.push(...productionPostcssPlugins);
@@ -47,14 +26,20 @@ async function run(configPath, tailwindConfig) {
 
   const cssContent = await postcss(postcssPlugins).process(postcssContent, {
     from: configPath,
-    to: `${dirname(configPath)}/index.dist.css`,
+    to: `${dirname(dirname(configPath))}/css/index.dist.css`,
+    map: true,
+    syntax: postcssScssSyntax
   });
 
-  await writeFile(`${dirname(configPath)}/index.dist.css`, cssContent.css);
+  await mkdir(`${dirname(dirname(configPath))}/css`, { recursive: true });
+  await writeFile(
+    `${dirname(dirname(configPath))}/css/index.dist.css`,
+    cssContent.css
+  );
 }
 
 // Alreay run? (first argument)
-function dedupAsync(func) {
+function PreventDuplicateExecutionAsync(func) {
   const running = new Map();
   const next = new Map();
   return async function () {
@@ -88,7 +73,7 @@ function dedupAsync(func) {
   };
 }
 
-module.exports = dedupAsync(async function (configPath, tailwindConfig, isLog) {
+module.exports = PreventDuplicateExecutionAsync(async function (configPath, tailwindConfig, isLog) {
   if (isLog !== false) console.log("processing " + configPath);
   await run(configPath, tailwindConfig);
 });

@@ -1,10 +1,21 @@
 # tailwind-g-watch
 
+
 ## Introduce
 
-This command will 'watch' and 'build' multiple `TailwindCSS' within your project individually.
+This is an unofficial command, developed for personal projects.
+
+This command will 'watch' and 'build' several tailwind based css files within the project.
 
 Support [TailwindCSS](https://tailwindcss.com/) 3.2+
+
+### Support Lnag and Ext
+
+- Target Files
+`.jsx`, `.tsx`, `.vue`, `.blade.php`, `.pug`, `.html`
+
+- css(style) Files
+`assets/css/config.css`, `assets/scss/config.scss`
 
 ## Installation
 
@@ -68,8 +79,10 @@ cd ${YOUR_PROJECT_ROOT}
 │   │   └── apple.html
 │   └── banana/
 │       ├── assets/
+│       │   └── scss/
+│       │   │   ├── config.scss
+│       │   │   └── _sub.scss
 │       │   └── css/
-│       │       ├── config.css
 │       │       └── index.dist.css
 │       └── banana.html
 └── tailwind.config.js <-- project tailwind.config.js
@@ -126,10 +139,6 @@ module.exports = {
 };
 ```
 
-#### Supported View File Extensions
-
-- `jsx`, `tsx`, `vue`, `blade.php`, `pug`, `html`
-
 ### Local TailwindCSS Config file
 
 #### Config File Tree Example
@@ -145,7 +154,7 @@ module.exports = {
 │   ├── apple/
 │   │   ├── assets/
 │   │   │   └── config/
-│   │   │       ├── config.js <-- "apple/" tailwind config
+│   │   │       ├── config.js <-- "views/apple/" tailwind config
 │   │   │   └── css/
 │   │   │       ├── config.css
 │   │   │       └── index.dist.css
@@ -198,3 +207,24 @@ npm i -D tailwindcss
 ```bach
 npm i -D @tailwindcss/typography @tailwindcss/forms @tailwindcss/line-clamp @tailwindcss/aspect-ratio [and others...]
 ```
+
+## Sass Build
+
+Since this is not node-sass, it will not find and build all `.scss` files in your project, this command will start building with `**/assets/scss/config.scss`.
+
+The `@import` syntax does not work according to the sass rules and should be used as in the example below.
+
+`views/banan/assets/scss/config.scss`
+
+- Not working
+
+  ```scss
+  @import 'sub';
+  @import '_scss';
+  ```
+
+- Working
+
+  ```scss
+  @import './_sub.scss';
+  ```

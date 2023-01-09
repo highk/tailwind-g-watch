@@ -4,6 +4,12 @@ const { watch } = require("chokidar");
 const run = require("./build");
 
 module.exports = function wailwindWtach(tailwindConfig) {
+  console.log("Initial scan and build...");
+
+  const regexConfigCss = /config\.(css|scss)/
+  const regexCss = /css|scss/
+  const regexHtml = /html|pug|jsx|tsx|vue/;
+
   let isLog = false;
   let dirIdx = -1;
   let dir = ".";
@@ -30,70 +36,53 @@ module.exports = function wailwindWtach(tailwindConfig) {
   });
 
   watcher.on("add", (filepath) => {
-    if (basename(filepath) === "config.css") {
-      if (basename(dirname(filepath)) === "css") {
+    if (basename(filepath).match(regexConfigCss)) {
+      if (basename(dirname(filepath)).match(regexCss)) {
         run(filepath, tailwindConfig, isLog);
-      }
-      return;
-    }
-
-    const regex = /html|pug|jsx|tsx|vue/;
-
-    if (extname(filepath).match(regex)) {
-      if (fs.existsSync(`${dirname(filepath)}/assets/css/config.css`)) {
-        run(
-          `${dirname(filepath)}/assets/css/config.css`,
-          tailwindConfig,
-          isLog
-        );
-      }
-    }
-
-    if (filepath.includes(".blade.php")) {
-      if (fs.existsSync(`${dirname(filepath)}/assets/css/config.css`)) {
-        run(
-          `${dirname(filepath)}/assets/css/config.css`,
-          tailwindConfig,
-          isLog
-        );
+        return;
       }
     }
   });
 
   watcher.on("change", (filepath) => {
+    // config.js
     if (basename(filepath) === "config.js") {
       if (fs.existsSync(`${dirname(dirname(filepath))}/css/config.css`)) {
         run(`${dirname(dirname(filepath))}/css/config.css`, tailwindConfig, isLog);
+        return;
       }
-      return;
+      if (fs.existsSync(`${dirname(dirname(filepath))}/scss/config.scss`)) {
+        run(`${dirname(dirname(filepath))}/scss/config.scss`, tailwindConfig, isLog);
+        return;
+      }
     }
 
-    if (basename(filepath) === "config.css") {
-      if (basename(dirname(filepath)) === "css") {
+    // config.css|scss
+    if (basename(filepath).match(regexConfigCss)) {
+      if (basename(dirname(filepath)).match(regexCss)) {
         run(filepath, tailwindConfig, isLog);
+        return;
       }
-      return;
     }
 
-    const regex = /html|pug|jsx|tsx|vue/;
-
-    if (extname(filepath).match(regex)) {
+    // html|blade.php|vue|jsx|tsx
+    if (extname(filepath).match(regexHtml) || basename(filepath).includes(".blade.php")) {
       if (fs.existsSync(`${dirname(filepath)}/assets/css/config.css`)) {
         run(
           `${dirname(filepath)}/assets/css/config.css`,
           tailwindConfig,
           isLog
         );
+        return;
       }
-    }
 
-    if (filepath.includes(".blade.php")) {
-      if (fs.existsSync(`${dirname(filepath)}/assets/css/config.css`)) {
+      if (fs.existsSync(`${dirname(filepath)}/assets/scss/config.scss`)) {
         run(
-          `${dirname(filepath)}/assets/css/config.css`,
+          `${dirname(filepath)}/assets/scss/config.scss`,
           tailwindConfig,
           isLog
         );
+        return;
       }
     }
   });
