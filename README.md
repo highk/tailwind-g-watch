@@ -214,7 +214,7 @@ Since this is not node-sass, it will not find and build all `.scss` files in you
 
 The `@import` syntax does not work according to the sass rules and should be used as in the example below.
 
-`views/banan/assets/scss/config.scss`
+`views/banana/assets/scss/config.scss`
 
 - Not working
 
