@@ -8,7 +8,7 @@ This command will 'watch' and 'build' several tailwind based css files within th
 
 Support [TailwindCSS](https://tailwindcss.com/) 3.2+
 
-### Support Lnag and Ext
+### Support Lang and Ext
 
 - Target Files
   `.jsx`, `.tsx`, `.vue`, `.blade.php`, `.pug`, `.html`
