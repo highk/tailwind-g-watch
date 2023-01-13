@@ -1,6 +1,6 @@
 {
   "name": "tailwind-g-watch",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "tailwind global watch",
   "main": "src/build.js",
   "scripts": {
@@ -11,11 +11,11 @@
     "tailwind-g-watch": "./bin/cli.js"
   },
   "keywords": [
-    "tailwindcss"
+    "tailwindcss", "css"
   ],
   "author": "superfast",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "@csstools/postcss-sass": "^5.0.1",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/container-queries": "^0.1.0",
@@ -37,6 +37,7 @@
     "stylelint": "^14.16.1",
     "stylelint-config-standard": "^29.0.0",
     "stylelint-scss": "^4.3.0",
-    "tailwindcss": "^3.2.4"
+    "tailwindcss": "^3.2.4",
+    "yargs": "^17.6.2"
   }
 }

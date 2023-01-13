@@ -1,6 +1,5 @@
 # tailwind-g-watch
 
-
 ## Introduce
 
 This is an unofficial command, developed for personal projects.
@@ -12,10 +11,10 @@ Support [TailwindCSS](https://tailwindcss.com/) 3.2+
 ### Support Lnag and Ext
 
 - Target Files
-`.jsx`, `.tsx`, `.vue`, `.blade.php`, `.pug`, `.html`
+  `.jsx`, `.tsx`, `.vue`, `.blade.php`, `.pug`, `.html`
 
 - css(style) Files
-`assets/css/config.css`, `assets/scss/config.scss`
+  `assets/css/config.css`, `assets/scss/config.scss`
 
 ## Installation
 
@@ -52,23 +51,23 @@ cd ${YOUR_PROJECT_ROOT}
 
 ### Command
 
-- target `.`
+```bash
+tailwind-g-watch
+```
 
-  ```bash
-  tailwind-g-wtach
-  ```
+```plain
+Usage: tailwind-g-watch -d <dir path> -m
 
-- target `./views`
+Options:
+  -m, --minify   Minify output css
+  -d, --dir      Watch directory path                                   [string]
+  -h, --help     Show help                                             [boolean]
+  -v, --version  Show version number                                   [boolean]
 
-  ```bash
-  tailwind-g-wtach --dir views # -d views
-  ```
-
-- minified output css
-
-  ```bash
-  tailwind-g-wtach --minify # -m
-  ```
+Examples:
+  tailwind-g-watch           watch .
+  tailwind-g-watch -d views  watch ./views
+```
 
 ### File Tree Example
 
@@ -228,12 +227,12 @@ The `@import` syntax does not work according to the sass rules and should be use
 - Not working
 
   ```scss
-  @import 'sub';
-  @import '_scss';
+  @import "sub";
+  @import "_scss";
   ```
 
 - Working
 
   ```scss
-  @import './_sub.scss';
+  @import "./_sub.scss";
   ```

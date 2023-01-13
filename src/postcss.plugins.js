@@ -5,7 +5,7 @@ module.exports = [
     rules: {
       "at-rule-no-unknown": null,
       "no-descending-specificity": true,
-      "color-no-invalid-hex": null
+      "color-no-invalid-hex": null,
     },
   }),
   require("postcss-reporter")({ clearReportedMessages: true }),
