@@ -56,17 +56,19 @@ tailwind-g-watch
 ```
 
 ```plain
-Usage: tailwind-g-watch -d <dir path> -m
+Usage: tailwind-g-watch -c <tailwind.config.js path> -d <dir path> -m
 
 Options:
   -m, --minify   Minify output css
+  -c, --config   Build using custom tailwind.config.js path             [string]
   -d, --dir      Watch directory path                                   [string]
   -h, --help     Show help                                             [boolean]
   -v, --version  Show version number                                   [boolean]
 
 Examples:
-  tailwind-g-watch           watch .
-  tailwind-g-watch -d views  watch ./views
+  tailwind-g-watch                          watch .
+  tailwind-g-watch -d views                 watch ./views
+  tailwind-g-watch -c nav.config.js -d nav  use nav.config.js & watch ./nav
 ```
 
 ### File Tree Example
