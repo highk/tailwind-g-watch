@@ -8,7 +8,7 @@ const regexConfigCss = /config\.(css|scss)/;
 const regexCss = /css|scss/;
 const regexHtml = /html|pug|jsx|tsx|vue/;
 
-module.exports = function wailwindWtach(tailwindConfig, argv) {
+module.exports = function tailwindWtach(tailwindConfig, argv) {
   console.log("Initial scan and build...");
   process.env.NODE_ENV = argv.minify ? "production" : "";
 

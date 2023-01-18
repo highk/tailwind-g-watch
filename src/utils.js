@@ -1,5 +1,6 @@
 module.exports.getDirPath = function (argv) {
-  let dir = "./";
+  let dir = ".";
+
   if (argv.dir) {
     const dirArr = argv.dir.split("");
     switch (dirArr[0]) {
@@ -10,7 +11,7 @@ module.exports.getDirPath = function (argv) {
         dir = argv.dir;
         break;
       default:
-        dir += argv.dir;
+        dir += ("/" + argv.dir);
     }
   }
   return dir;
