@@ -63,5 +63,5 @@ if (fs.existsSync(configPath)) {
   const config = require(configPath);
   watch(config, argv);
 } else {
-  console.log(argv.config && `${configPath} is not exist.`);
+  console.log(`${configPath} is not exist.`);
 }
