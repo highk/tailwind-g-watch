@@ -3,7 +3,7 @@ module.exports = [
     removeAll: true,
   }),
   require("cssnano")({
-    preset: "cssnano-preset-advanced",
+    preset: "cssnano-preset-default",
   }),
   require("postcss-preset-env")({
     browsers: ["ie 10", "> 2%", "last 2 versions"],

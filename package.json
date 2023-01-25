@@ -1,6 +1,6 @@
 {
   "name": "tailwind-g-watch",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "tailwind global watch",
   "main": "src/build.js",
   "scripts": {
@@ -11,7 +11,8 @@
     "tailwind-g-watch": "./bin/cli.js"
   },
   "keywords": [
-    "tailwindcss", "css"
+    "tailwindcss",
+    "css"
   ],
   "author": "superfast",
   "license": "MIT",
@@ -25,7 +26,7 @@
     "autoprefixer": "^10.4.13",
     "chokidar": "^3.5.3",
     "cssnano": "^5.1.14",
-    "cssnano-preset-advanced": "^5.3.9",
+    "cssnano-preset-default": "^5.2.13",
     "postcss": "^8.4.20",
     "postcss-cli": "^10.1.0",
     "postcss-discard-comments": "^5.1.2",
