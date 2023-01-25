@@ -8,7 +8,7 @@ const tailwindPlugins = require("./taliwind.plugins");
 const postcssScssSyntax = require("postcss-scss");
 const { preventDuplicateExecutionAsync } = require("./utils");
 
-async function run(configPath, tailwindConfig) {
+async function run(configPath, tailwindConfig, argv) {
   const isProdction = process.env.NODE_ENV === "production";
   const tailwindPostcssPlugin = tailwindcss({
     content: [
@@ -27,14 +27,14 @@ async function run(configPath, tailwindConfig) {
 
   const cssContent = await postcss(postcssPlugins).process(postcssContent, {
     from: configPath,
-    to: `${dirname(dirname(configPath))}/css/index.dist.css`,
+    to: `${dirname(dirname(configPath))}/css/${argv.output}`,
     map: true,
     syntax: postcssScssSyntax,
   });
 
   await mkdir(`${dirname(dirname(configPath))}/css`, { recursive: true });
   await writeFile(
-    `${dirname(dirname(configPath))}/css/index.dist.css`,
+    `${dirname(dirname(configPath))}/css/${argv.output}`,
     cssContent.css
   );
 }
@@ -42,8 +42,9 @@ async function run(configPath, tailwindConfig) {
 module.exports = preventDuplicateExecutionAsync(async function (
   configPath,
   tailwindConfig,
-  isLog
+  isLog,
+  argv
 ) {
   if (isLog !== false) console.log("processing " + configPath);
-  await run(configPath, tailwindConfig);
+  await run(configPath, tailwindConfig, argv);
 });

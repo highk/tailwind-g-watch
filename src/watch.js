@@ -23,7 +23,7 @@ module.exports = function tailwindWtach(tailwindConfig, argv) {
   watcher.on("add", (filepath) => {
     if (basename(filepath).match(regexConfigCss)) {
       if (basename(dirname(filepath)).match(regexCss)) {
-        run(filepath, tailwindConfig, isLog);
+        run(filepath, tailwindConfig, isLog, argv);
         return;
       }
     }
@@ -36,15 +36,18 @@ module.exports = function tailwindWtach(tailwindConfig, argv) {
         run(
           `${dirname(dirname(filepath))}/css/config.css`,
           tailwindConfig,
-          isLog
+          isLog,
+          argv
         );
         return;
       }
+
       if (fs.existsSync(`${dirname(dirname(filepath))}/scss/config.scss`)) {
         run(
           `${dirname(dirname(filepath))}/scss/config.scss`,
           tailwindConfig,
-          isLog
+          isLog,
+          argv
         );
         return;
       }
@@ -53,7 +56,7 @@ module.exports = function tailwindWtach(tailwindConfig, argv) {
     // config.css|scss
     if (basename(filepath).match(regexConfigCss)) {
       if (basename(dirname(filepath)).match(regexCss)) {
-        run(filepath, tailwindConfig, isLog);
+        run(filepath, tailwindConfig, isLog, argv);
         return;
       }
     }
@@ -67,7 +70,8 @@ module.exports = function tailwindWtach(tailwindConfig, argv) {
         run(
           `${dirname(filepath)}/assets/css/config.css`,
           tailwindConfig,
-          isLog
+          isLog,
+          argv
         );
         return;
       }
@@ -76,7 +80,8 @@ module.exports = function tailwindWtach(tailwindConfig, argv) {
         run(
           `${dirname(filepath)}/assets/scss/config.scss`,
           tailwindConfig,
-          isLog
+          isLog,
+          argv
         );
         return;
       }

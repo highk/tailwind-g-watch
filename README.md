@@ -60,8 +60,9 @@ Usage: tailwind-g-watch -c <tailwind.config.js path> -d <dir path> -m
 
 Options:
   -m, --minify   Minify output css
-  -c, --config   Build using custom tailwind.config.js path             [string]
+  -c, --config   Base tailwind.config.js path                           [string]
   -d, --dir      Watch directory path                                   [string]
+  -o, --output   Change output css file name[string] [default: "index.dist.css"]
   -h, --help     Show help                                             [boolean]
   -v, --version  Show version number                                   [boolean]
 

@@ -16,7 +16,7 @@ const { argv } = yargs
   })
   .option("c", {
     alias: "config",
-    describe: "Build using custom tailwind.config.js path",
+    describe: "Base tailwind.config.js path",
     demandOption: false,
     type: 'string',
     nargs: 1,
@@ -25,6 +25,14 @@ const { argv } = yargs
     alias: "dir",
     describe: "Watch directory path",
     demandOption: false,
+    type: "string",
+    nargs: 1,
+  })
+  .option("o", {
+    alias: "output",
+    describe: "Change output css file name",
+    demandOption: false,
+    default: 'index.dist.css',
     type: "string",
     nargs: 1,
   })
