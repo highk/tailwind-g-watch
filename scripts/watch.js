@@ -28,6 +28,14 @@ const { argv } = yargs
     type: "string",
     nargs: 1,
   })
+  .option("i", {
+    alias: "input",
+    describe: "Change config file name",
+    demandOption: false,
+    default: 'config',
+    type: "string",
+    nargs: 1,
+  })
   .option("o", {
     alias: "output",
     describe: "Change output css file name",
@@ -65,9 +73,8 @@ if(argv.config) {
 console.log('Default Config:', configPath);
 console.log('Show help : tailwind-g-watch -h');
 
-if (fs.existsSync(configPath)) {
-  const config = require(configPath);
-  watch(config, argv);
-} else {
-  console.log(`${configPath} is not exist.`);
+if(!fs.existsSync(configPath)) {
+  console.log(`Not found config : ${configPath}`)
 }
+
+watch(fs.existsSync(configPath) ? require(configPath) : {}, argv);

@@ -4,13 +4,15 @@ const { watch } = require("chokidar");
 const run = require("./build");
 const { getDirPath } = require("./utils");
 
-const regexConfigCss = /config\.(css|scss)/;
-const regexCss = /css|scss/;
+const regexCss = /css|scss|src/;
 const regexHtml = /html|pug|jsx|tsx|vue/;
 
 module.exports = function tailwindWtach(tailwindConfig, argv) {
   console.log("Initial scan and build...");
   process.env.NODE_ENV = argv.minify ? "production" : "";
+  
+  const regexConfigCss = new RegExp(`${argv.input}\\.(css|scss)`);
+  console.log(regexConfigCss);
 
   let isLog = false;
 
@@ -32,9 +34,9 @@ module.exports = function tailwindWtach(tailwindConfig, argv) {
   watcher.on("change", (filepath) => {
     // config.js
     if (basename(filepath) === "config.js") {
-      if (fs.existsSync(`${dirname(dirname(filepath))}/css/config.css`)) {
+      if (fs.existsSync(`${dirname(dirname(filepath))}/css/${argv.input}.css`)) {
         run(
-          `${dirname(dirname(filepath))}/css/config.css`,
+          `${dirname(dirname(filepath))}/css/${argv.input}.css`,
           tailwindConfig,
           isLog,
           argv
@@ -42,9 +44,19 @@ module.exports = function tailwindWtach(tailwindConfig, argv) {
         return;
       }
 
-      if (fs.existsSync(`${dirname(dirname(filepath))}/scss/config.scss`)) {
+      if (fs.existsSync(`${dirname(dirname(filepath))}/scss/${argv.input}.scss`)) {
         run(
-          `${dirname(dirname(filepath))}/scss/config.scss`,
+          `${dirname(dirname(filepath))}/scss/${argv.input}.scss`,
+          tailwindConfig,
+          isLog,
+          argv
+        );
+        return;
+      }
+
+      if (fs.existsSync(`${dirname(dirname(filepath))}/src/${argv.input}.scss`)) {
+        run(
+          `${dirname(dirname(filepath))}/src/${argv.input}.scss`,
           tailwindConfig,
           isLog,
           argv
@@ -55,6 +67,7 @@ module.exports = function tailwindWtach(tailwindConfig, argv) {
 
     // config.css|scss
     if (basename(filepath).match(regexConfigCss)) {
+      console.log(basename(dirname(filepath)));
       if (basename(dirname(filepath)).match(regexCss)) {
         run(filepath, tailwindConfig, isLog, argv);
         return;
@@ -66,9 +79,9 @@ module.exports = function tailwindWtach(tailwindConfig, argv) {
       extname(filepath).match(regexHtml) ||
       basename(filepath).includes(".blade.php")
     ) {
-      if (fs.existsSync(`${dirname(filepath)}/assets/css/config.css`)) {
+      if (fs.existsSync(`${dirname(filepath)}/assets/css/${argv.input}.css`)) {
         run(
-          `${dirname(filepath)}/assets/css/config.css`,
+          `${dirname(filepath)}/assets/css/${argv.input}.css`,
           tailwindConfig,
           isLog,
           argv
@@ -76,9 +89,19 @@ module.exports = function tailwindWtach(tailwindConfig, argv) {
         return;
       }
 
-      if (fs.existsSync(`${dirname(filepath)}/assets/scss/config.scss`)) {
+      if (fs.existsSync(`${dirname(filepath)}/assets/scss/${argv.input}.scss`)) {
         run(
-          `${dirname(filepath)}/assets/scss/config.scss`,
+          `${dirname(filepath)}/assets/scss/${argv.input}.scss`,
+          tailwindConfig,
+          isLog,
+          argv
+        );
+        return;
+      }
+
+      if (fs.existsSync(`${dirname(filepath)}/assets/src/${argv.input}.scss`)) {
+        run(
+          `${dirname(filepath)}/assets/src/${argv.input}.scss`,
           tailwindConfig,
           isLog,
           argv
