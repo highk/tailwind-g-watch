@@ -12,7 +12,7 @@ module.exports = function tailwindWtach(tailwindConfig, argv) {
   process.env.NODE_ENV = argv.minify ? "production" : "";
   
   const regexConfigCss = new RegExp(`${argv.input}\\.(css|scss)`);
-  console.log(regexConfigCss);
+  // console.log(regexConfigCss);
 
   let isLog = false;
 
@@ -67,7 +67,7 @@ module.exports = function tailwindWtach(tailwindConfig, argv) {
 
     // config.css|scss
     if (basename(filepath).match(regexConfigCss)) {
-      console.log(basename(dirname(filepath)));
+      // console.log(basename(dirname(filepath)));
       if (basename(dirname(filepath)).match(regexCss)) {
         run(filepath, tailwindConfig, isLog, argv);
         return;

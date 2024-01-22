@@ -18,25 +18,31 @@ async function run(configPath, tailwindConfig, argv) {
     ...tailwindConfig,
   });
 
-  const postcssContent = await readFile(configPath);
-  const postcssPlugins = [...defaultPostcssPlugins, tailwindPostcssPlugin];
+  try {
+    const postcssContent = await readFile(configPath);
+    const postcssPlugins = [...defaultPostcssPlugins, tailwindPostcssPlugin];
 
-  if (isProdction) {
-    postcssPlugins.push(...productionPostcssPlugins);
+    if (isProdction) {
+      postcssPlugins.push(...productionPostcssPlugins);
+    }
+
+    const cssContent = await postcss(postcssPlugins).process(postcssContent, {
+      from: configPath,
+      to: `${dirname(dirname(configPath))}/css/${argv.output}`,
+      map: true,
+      syntax: postcssScssSyntax,
+    });
+    await mkdir(`${dirname(dirname(configPath))}/css`, { recursive: true });
+    await writeFile(
+      `${dirname(dirname(configPath))}/css/${argv.output}`,
+      cssContent.css
+    );
+  } catch (e) {
+    console.log(`Error : ${e.message}`);
+    console.log(
+      `Fail : Make ${dirname(dirname(configPath))}/css/${argv.output}\n`
+    );
   }
-
-  const cssContent = await postcss(postcssPlugins).process(postcssContent, {
-    from: configPath,
-    to: `${dirname(dirname(configPath))}/css/${argv.output}`,
-    map: true,
-    syntax: postcssScssSyntax,
-  });
-
-  await mkdir(`${dirname(dirname(configPath))}/css`, { recursive: true });
-  await writeFile(
-    `${dirname(dirname(configPath))}/css/${argv.output}`,
-    cssContent.css
-  );
 }
 
 module.exports = preventDuplicateExecutionAsync(async function (
@@ -45,6 +51,6 @@ module.exports = preventDuplicateExecutionAsync(async function (
   isLog,
   argv
 ) {
-  if (isLog !== false) console.log("processing " + configPath);
+  if (isLog !== false) console.log("Process : " + configPath);
   await run(configPath, tailwindConfig, argv);
 });

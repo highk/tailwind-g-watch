@@ -72,7 +72,7 @@ if(argv.config) {
   }
 }
 
-console.log('Default Config:', configPath);
+console.log('Default Config :', configPath);
 console.log('Show help : tailwind-g-watch -h');
 
 if(!fs.existsSync(configPath)) {
