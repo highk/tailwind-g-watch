@@ -114,7 +114,7 @@ Examples:
         xl: "1440px",
       },
     },
-    corePlgins: {
+    corePlugins: {
       preflight: false,
     },
   };
@@ -143,7 +143,6 @@ module.exports = {
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/forms"),
-    require("@tailwindcss/line-clamp"),
     require("@tailwindcss/aspect-ratio"),
     require("@tailwindcss/container-queries"),
   ],
@@ -179,11 +178,10 @@ module.exports = {
 
   ```javascript
   module.exports = {
-    content: ["views/apple/*.html"]
+    content: ["views/apple/*.html"],
     plugins: [
       require("@tailwindcss/typography"),
       require("@tailwindcss/forms"),
-      require("@tailwindcss/line-clamp"),
       require("@tailwindcss/aspect-ratio"),
       require("@tailwindcss/container-queries"),
     ],
@@ -216,7 +214,7 @@ npm i -D tailwindcss
 ```
 
 ```bach
-npm i -D @tailwindcss/typography @tailwindcss/forms @tailwindcss/line-clamp @tailwindcss/aspect-ratio [and others...]
+npm i -D @tailwindcss/typography @tailwindcss/forms @tailwindcss/aspect-ratio [and others...]
 ```
 
 ## Sass Build
