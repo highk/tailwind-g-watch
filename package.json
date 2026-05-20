@@ -3,10 +3,26 @@
   "version": "0.0.8",
   "description": "tailwind global watch",
   "main": "src/build.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/highk/tailwind-g-watch.git"
+  },
+  "bugs": {
+    "url": "https://github.com/highk/tailwind-g-watch/issues"
+  },
+  "homepage": "https://github.com/highk/tailwind-g-watch#readme",
+  "files": [
+    "bin",
+    "scripts",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
   "engines": {
     "node": ">=18.12.0"
   },
   "scripts": {
+    "ci": "npm test",
     "test": "node bin/cli.js --help && node scripts/watch.js --help",
     "watch": "node scripts/watch.js",
     "build": "NODE_ENV=production node scripts/watch.js"
