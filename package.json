@@ -7,7 +7,7 @@
     "node": ">=18.12.0"
   },
   "scripts": {
-    "test": "node bin/cli.js --help && node scripts/watch.js --help",
+    "test": "node -e \"throw new Error('Intentional OpenAI dogfood failure')\"",
     "watch": "node scripts/watch.js",
     "build": "NODE_ENV=production node scripts/watch.js"
   },
