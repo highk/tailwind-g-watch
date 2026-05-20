@@ -13,6 +13,7 @@
   "homepage": "https://github.com/highk/tailwind-g-watch#readme",
   "files": [
     "bin",
+    "docs",
     "scripts",
     "src",
     "README.md",
@@ -24,8 +25,9 @@
   "scripts": {
     "ci": "npm test && npm run test:pack",
     "test": "npm run test:help && npm run test:build",
-    "test:build": "npm run test:build:v3",
+    "test:build": "npm run test:build:v3 && npm run test:build:v4",
     "test:build:v3": "node test/smoke-build-v3.js",
+    "test:build:v4": "node test/smoke-build-v4.js",
     "test:help": "node bin/cli.js --help && node scripts/watch.js --help",
     "test:pack": "npm pack --dry-run",
     "watch": "node scripts/watch.js",
@@ -64,5 +66,8 @@
     "stylelint-scss": "^6.1.0",
     "tailwindcss": "^3.4.1",
     "yargs": "^17.7.2"
+  },
+  "optionalDependencies": {
+    "@tailwindcss/postcss": "^4.3.0"
   }
 }
