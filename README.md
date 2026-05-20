@@ -144,6 +144,11 @@ Examples:
   @import "tailwindcss";
   ```
 
+  The `-c, --config` option still points to a JavaScript Tailwind config file.
+  Do not pass the CSS entrypoint to `-c`; the watcher discovers
+  `assets/css/config.css` or `assets/scss/config.scss` from the watched
+  directory.
+
 #### Default TailwindCSS Plugins
 
 ```javascript
