@@ -23,7 +23,7 @@
     "node": ">=18.12.0"
   },
   "scripts": {
-    "ci": "npm test && npm run test:pack",
+    "ci": "npm test && node test/dogfood-missing-module.js && npm run test:pack",
     "test": "npm run test:help && npm run test:build",
     "test:build": "npm run test:build:v3 && npm run test:build:v4 && npm run test:build:v4:cli",
     "test:build:v3": "node test/smoke-build-v3.js",
