@@ -1,30 +1,21 @@
 const postcss = require("postcss");
-const tailwindcss = require("tailwindcss");
 const { dirname } = require("path");
 const { mkdir, writeFile, readFile } = require("fs/promises");
-const productionPostcssPlugins = require("./postcss.plugins.production");
-const defaultPostcssPlugins = require("./postcss.plugins");
-const tailwindPlugins = require("./taliwind.plugins");
 const postcssScssSyntax = require("postcss-scss");
+const { buildPostcssPlugins } = require("./tailwind-adapter");
 const { preventDuplicateExecutionAsync } = require("./utils");
 
 async function run(configPath, tailwindConfig, argv) {
-  const isProdction = process.env.NODE_ENV === "production";
-  const tailwindPostcssPlugin = tailwindcss({
-    content: [
-      `${dirname(dirname(dirname(configPath)))}/*.{html,blade.php,jsx,tsx,pug}`,
-    ],
-    ...tailwindPlugins,
-    ...tailwindConfig,
-  });
+  const isProduction = process.env.NODE_ENV === "production";
 
   try {
     const postcssContent = await readFile(configPath);
-    const postcssPlugins = [...defaultPostcssPlugins, tailwindPostcssPlugin];
-
-    if (isProdction) {
-      postcssPlugins.push(...productionPostcssPlugins);
-    }
+    const postcssPlugins = buildPostcssPlugins({
+      configPath,
+      cssContent: postcssContent,
+      tailwindConfig,
+      isProduction,
+    });
 
     const cssContent = await postcss(postcssPlugins).process(postcssContent, {
       from: configPath,

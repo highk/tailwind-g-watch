@@ -8,7 +8,7 @@ This is an unofficial command, developed for personal projects.
 
 This command will 'watch' and 'build' several tailwind based css files within the project.
 
-Support [TailwindCSS](https://tailwindcss.com/) 3.2+ through v3. Tailwind CSS v4 migration work is tracked in [docs/tailwind-v4.md](docs/tailwind-v4.md).
+Support [TailwindCSS](https://tailwindcss.com/) 3.2+ through v3, with a separate Tailwind CSS v4 build path for v4 CSS entrypoints. Tailwind CSS v4 notes are tracked in [docs/tailwind-v4.md](docs/tailwind-v4.md).
 
 ### Support Lang and Ext
 
@@ -136,6 +136,12 @@ Examples:
   @tailwind utilities;
 
   /* Add your custom css */
+  ```
+
+  For Tailwind CSS v4 projects, use Node.js 20 or newer, install Tailwind v4 in the project, and use the v4 CSS entrypoint:
+
+  ```css
+  @import "tailwindcss";
   ```
 
 #### Default TailwindCSS Plugins
