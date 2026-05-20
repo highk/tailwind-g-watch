@@ -1,5 +1,7 @@
 # tailwind-g-watch
 
+[![CI](https://github.com/highk/tailwind-g-watch/actions/workflows/ci.yml/badge.svg)](https://github.com/highk/tailwind-g-watch/actions/workflows/ci.yml)
+
 ## Introduce
 
 This is an unofficial command, developed for personal projects.
@@ -120,7 +122,7 @@ Examples:
   };
   ```
 
-  - `plugins` is defined in [Defualt TailwindCSS Plugins](#defualt-tailwindcss-plugins) and run the merge configuration.
+  - `plugins` is defined in [Default TailwindCSS Plugins](#default-tailwindcss-plugins) and run the merge configuration.
 
   - If you define `plugins` your `tailwind.config.js`, See [Use TailwindCSS custom config and other node modules](#use-tailwindcss-custom-config-and-other-node-modules)
 
@@ -136,7 +138,7 @@ Examples:
   /* Add your custom css */
   ```
 
-#### Defualt TailwindCSS Plugins
+#### Default TailwindCSS Plugins
 
 ```javascript
 module.exports = {
@@ -213,7 +215,7 @@ npm init -y
 npm i -D tailwindcss
 ```
 
-```bach
+```bash
 npm i -D @tailwindcss/typography @tailwindcss/forms @tailwindcss/aspect-ratio [and others...]
 ```
 
