@@ -22,10 +22,11 @@
     "node": ">=18.12.0"
   },
   "scripts": {
-    "ci": "npm test",
+    "ci": "npm test && npm run test:pack",
     "test": "npm run test:help && npm run test:build",
     "test:build": "node test/smoke-build.js",
     "test:help": "node bin/cli.js --help && node scripts/watch.js --help",
+    "test:pack": "npm pack --dry-run",
     "watch": "node scripts/watch.js",
     "build": "NODE_ENV=production node scripts/watch.js"
   },
