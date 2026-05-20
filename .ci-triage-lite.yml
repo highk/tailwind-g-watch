@@ -1,0 +1,7 @@
+rules:
+  - match: "Cannot find module 'missing-test-package'"
+    type: dogfood-custom-rule
+    cause: "The custom rule dogfood failure was triggered."
+    next: "Confirm ci-triage-lite loaded .ci-triage-lite.yml before core rules."
+    context: "ci-triage-lite custom rule dogfood"
+    severity: high
