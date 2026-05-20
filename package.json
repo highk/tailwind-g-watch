@@ -25,9 +25,10 @@
   "scripts": {
     "ci": "npm test && npm run test:pack",
     "test": "npm run test:help && npm run test:build",
-    "test:build": "npm run test:build:v3 && npm run test:build:v4",
+    "test:build": "npm run test:build:v3 && npm run test:build:v4 && npm run test:build:v4:cli",
     "test:build:v3": "node test/smoke-build-v3.js",
     "test:build:v4": "node test/smoke-build-v4.js",
+    "test:build:v4:cli": "node test/smoke-cli-v4.js",
     "test:help": "node bin/cli.js --help && node scripts/watch.js --help",
     "test:pack": "npm pack --dry-run",
     "watch": "node scripts/watch.js",
